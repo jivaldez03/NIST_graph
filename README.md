@@ -3,6 +3,7 @@
 # INSTALL AND LOAD XLSX FILE
 
 # docker
+# ------- please change "__your-user__" label with a real value
 1. sudo docker run -d --publish=7474:7474 --publish=7687:7687 --env=NEO4J_AUTH=none --volume=/home/__your-user__/dockerback/dock_NIST/data:/data neo4j
 
 # loading NIST file
