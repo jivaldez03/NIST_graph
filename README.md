@@ -16,11 +16,16 @@ http://0.0.0.0:7474/browser/   or http://localhost:7474/browser/
 # review complete schema - Neo4j Command: 
 call db.schema.visualization()
 
+![schema visualization](image.png)
+
+
 # reviewing Configuration Management (CM): 
 match (c:Category {ID:'CM'})-[rd:DETAILCAT]-(cd:CategoryDet)
         -[rp:DETAILCATPOS]-(cdp:CategoryDetPos)
 optional match (cdp)-[rcp:RELATEDCONTROL]-(cd2:CategoryDet)
 return c, rd, cd, rp, cdp, rcp, cd2
+
+![Configuration Management](image-1.png)
 
 
 # Categories
