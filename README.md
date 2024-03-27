@@ -31,25 +31,45 @@ return c, rd, cd, rp, cdp, rcp, cd2
 # Categories
 ID	    Name 	                                    Elements
 "AC"	"Access Control"	                            25
-"AT"	"Awareness and Training "	                     6
-"AU"	"Audit and Accountability"	                    16
-"CA"	"Security Assessment and Authorization "	    9
-"CM"	"Configuration Management"	                    14
-"CP"	"Contingency Planning"	                        13
-"IA"	"Identification and Authentication"	            12
-"IP"	"Information Processing"	                    0
-"IR"	"Incident Response"	                            10
-"MA"	"Maintenance"	                                7
-"MP"	"Media Protection"	                            8
-"PE"	"Physical and Environmental Protection "	    23
-"PL"	"Planning"	                                    11
-"PM"	"Program Management"	                        32
-"PS"	"Personnel Security"	                        9
-"PT"	"Personally Identifiable"	                    8
-"RA"	"Vulnerability Scanning"	                    10
-"RM"	"Risk Management"	                            0
-"SA"	"System and Service Acquisition"	            23
-"SC"	"System and Communications Protection "	        51
-"SI"	"System and Information Integrity"	            23
-"SR"	"Supply Chain Risk Management"	                12
 
+"AT"	"Awareness and Training "	                     6
+
+"AU"	"Audit and Accountability"	                    16
+
+"CA"	"Security Assessment and Authorization "	    9
+
+"CM"	"Configuration Management"	                    14
+
+"CP"	"Contingency Planning"	                        13
+
+"IA"	"Identification and Authentication"	            12
+
+"IP"	"Information Processing"	                    0
+
+"IR"	"Incident Response"	                            10
+
+"MA"	"Maintenance"	                                7
+
+"MP"	"Media Protection"	                            8
+
+"PE"	"Physical and Environmental Protection "	    23
+
+"PL"	"Planning"	                                    11
+
+"PM"	"Program Management"	                        32
+
+"PS"	"Personnel Security"	                        9
+
+"PT"	"Personally Identifiable"	                    8
+
+"RA"	"Vulnerability Scanning"	                    10
+
+"RM"	"Risk Management"	                            0
+
+"SA"	"System and Service Acquisition"	            23
+
+"SC"	"System and Communications Protection "	        51
+
+"SI"	"System and Information Integrity"	            23
+
+"SR"	"Supply Chain Risk Management"	                12
