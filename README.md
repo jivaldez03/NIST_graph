@@ -43,7 +43,7 @@ return c, rd, cd, rp, cdp, rcp, cd2
 
 "CM"	"Configuration Management"	                    14
 
-"CP"	"Contingency Planning"	                        13
+"CP"	"Contingency Planning"	                            13
 
 "IA"	"Identification and Authentication"	            12
 
@@ -51,7 +51,7 @@ return c, rd, cd, rp, cdp, rcp, cd2
 
 "IR"	"Incident Response"	                            10
 
-"MA"	"Maintenance"	                                7
+"MA"	"Maintenance"	                                    7
 
 "MP"	"Media Protection"	                            8
 
@@ -59,9 +59,9 @@ return c, rd, cd, rp, cdp, rcp, cd2
 
 "PL"	"Planning"	                                    11
 
-"PM"	"Program Management"	                        32
+"PM"	"Program Management"	                            32
 
-"PS"	"Personnel Security"	                        9
+"PS"	"Personnel Security"	                            9
 
 "PT"	"Personally Identifiable"	                    8
 
@@ -71,8 +71,8 @@ return c, rd, cd, rp, cdp, rcp, cd2
 
 "SA"	"System and Service Acquisition"	            23
 
-"SC"	"System and Communications Protection "	        51
+"SC"	"System and Communications Protection "	            51
 
 "SI"	"System and Information Integrity"	            23
 
-"SR"	"Supply Chain Risk Management"	                12
+"SR"	"Supply Chain Risk Management"	                    12
