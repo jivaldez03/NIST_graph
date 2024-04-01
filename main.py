@@ -1,7 +1,7 @@
 from app.general_functions.common import _get_datetime, _get_sdatetime
 from app.general_functions import pandas_fn as pd_fns
 from app.db import common_dbfunc as dbexec
-from app.db.crud.crud_security import category, control
+from app.db.crud.crud_security import category, categoryID_SUBID as control, relatedcontrol
 
 from app.db.database import driver_forneo4j
 
@@ -17,6 +17,7 @@ targetdb = driver_forneo4j(port)
 print(f"Driver to db: {targetdb}")
 
 def sendingDB_categories(df):
+    print("Adding Categories")
     for index_df, row in df.iterrows():
         index = row['Ix']
         code = row['Unnamed: 1']
@@ -34,22 +35,16 @@ def sendingDB_categories(df):
                                             )
     return
 
-
-def sendingDB_controldef(df, POS:int):
-    recs = 0
-    if POS == 0:
-        query = control.create_detailcat + \
-                control.create_detailcat_prop.format(properties=control.detailcat_properties_forupdate) + \
-                control.create_detailcat_prop2
-    else:
-        query = control.create_detailcat_pos + \
-                control.create_detailcat_pos_prop.format(properties=control.detailcat_properties_forupdate) + \
-                control.create_detailcat_pos_prop2
-
-    query_relatedcontrols = control.create_detailcat_ref  # relationship between CatDetail->CatDetail
-    query_relatedcontrols_pos = control.create_detailcat_pos_ref  # relationship between CatDetailPos->CatDetail
+def sendingDB_controldef(df):
+    print("Adding Categorie's Detail")
+    queryRoot = control.create_detailcat + \
+                    control.create_detailcat_prop.format(properties=control.detailcat_properties_forupdate) + \
+                    control.create_detailcat_prop2
+    queryLeaves = control.create_detailcat_pos + \
+                    control.create_detailcat_pos_prop.format(properties=control.detailcat_properties_forupdate) + \
+                    control.create_detailcat_pos_prop2   
         
-    for index_df, row in df.iterrows():
+    for index_df, row in df.iterrows():        
         code_ref = row["Control Identifier"]
         name = row["Control_Name"]
         text = row["Control Text"]
@@ -61,46 +56,38 @@ def sendingDB_controldef(df, POS:int):
         reflist = ref.split('(') 
         ref,refpos = reflist[0], reflist[1] if len(reflist) > 1 else None
         refpos = int(refpos.replace(')','')) if refpos else 0
-        print(index_df, code_ref, code, ref, refpos, controls)
+        print(index_df+1, code_ref, code, ref, refpos, controls, refpos)        
+        
+        if controls.lower() not in ['none','none.','', None]:
+            ssubids = controls.replace(' ','').replace('.','').split(',')
+            print(f"Related Controls: {ssubids}")
+        else:
+            ssubids = None
+        
+        if refpos == 0:    # root - P-10
+            query = queryRoot
+        else:
+            query = queryLeaves
 
-        if (POS == 0 and refpos == 0) or \
-            (POS == 1 and refpos > 0):
-                recs = recs + 1
+        dbexec.execute_write_query(targetdb, query
+                                            , code = code
+                                            , ref = int(ref)
+                                            , refpos = refpos
+                                            , name = name
+                                            , text = text
+                                            , discussion = discussion.capitalize()
+                                            , controls = ssubids  #controls
+                                            )
+        
+def adding_relatedcontrols():
+    print('Adding relationships')
+    query = relatedcontrol.create_relatedcontrol_relationship
+    dbexec.execute_write_query(targetdb, query)
 
-                dbexec.execute_write_query(targetdb, query
-                                                    , code = code
-                                                    , ref = int(ref)
-                                                    , refpos = refpos
-                                                    , name = name
-                                                    , text = text
-                                                    , discussion = discussion.capitalize()
-                                                    , controls = controls
-                                                    )
-                
-                if controls.lower() not in ['none','none.','', None]:
-                    ssubids = controls.replace(' ','').replace('.','').split(',')
-                    print(f"Related Controls: {ssubids}")
-                    if POS == 1:
-                        for gia, ssubid in enumerate(ssubids):
-                            coderef, subid = ssubid.split('-') 
-                            new_node = dbexec.execute_write_query(targetdb, query_relatedcontrols_pos
-                                                                , code = code
-                                                                , ref = int(ref)
-                                                                , refpos = refpos
-                                                                , code_ref = coderef
-                                                                , ref_ref = int(subid)
-                                                                )
-                    else:
-                        for gia, ssubid in enumerate(ssubids):
-                            coderef, subid = ssubid.split('-') 
-                            dbexec.execute_write_query(targetdb, query_relatedcontrols
-                                                                , code = code
-                                                                , ref = int(ref)
-                                                                , refpos = refpos
-                                                                , code_ref = coderef
-                                                                , ref_ref = int(subid)
-                                                                )
-    return
+def adding_rootnodes():
+    print('Adding root nodes')
+    query = category.create_root
+    dbexec.execute_write_query(targetdb, query)
 
 # MAIN SECTION
 pdxls = pd_fns._read_file('files/Combined sp800-53r5-control-catalog.xlsx') 
@@ -118,11 +105,9 @@ for gia, sheet in enumerate(list(pdxls.keys())[0:]):
     elif gia == 1: # categories' detail
         df = pd_fns._df_NaNbyAny(df, changeto='')
         df = pd_fns._df_renamecolumn(df, 'Control (or Control Enhancement) Name', 'Control_Name')
-        sendingDB_controldef(df,POS=0)
-        sendingDB_controldef(df,POS=1)
+        sendingDB_controldef(df)
 
-# root nodes 
-query = category.create_root
-dbexec.execute_write_query(targetdb, query)
+adding_relatedcontrols()
+adding_rootnodes()
 
 targetdb.close()

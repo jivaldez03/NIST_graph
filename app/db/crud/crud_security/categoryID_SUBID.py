@@ -34,21 +34,3 @@ create_detailcat_pos_prop2 = """
                         on match set R.ctUpdate = datetime()
                         return D 
                         """
-# conectar Related_Control (Detail -> Detail)
-create_detailcat_ref = """
-                        MATCH (DP:CategoryDet {ID:$code, SUBID: $ref})
-                        MATCH (D:CategoryDet {ID:$code_ref, SUBID:$ref_ref})
-                        MERGE (DP)-[R:RELATEDCONTROL]->(D)
-                        on create set R.ctInsert = datetime()
-                        on match set R.ctUpdate = datetime()
-                        return D 
-                        """
-# conectar Related_Control (DetPos -> Detail)
-create_detailcat_pos_ref = """
-                        MATCH (DP:CategoryDetPos {ID:$code, SUBID: $ref, POS: $refpos})
-                        MATCH (D:CategoryDet {ID:$code_ref, SUBID:$ref_ref})
-                        MERGE (DP)-[R:RELATEDCONTROL]->(D)
-                        on create set R.ctInsert = datetime()
-                        on match set R.ctUpdate = datetime()
-                        return D 
-                        """
