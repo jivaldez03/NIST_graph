@@ -30,6 +30,17 @@ RETURN c, rd, cd, rp, cdp, rcp, cd2
 ![image](https://github.com/jivaldez03/NIST_graph/assets/61798268/d2fe654c-95b9-4492-9c62-285db65d62ed)
 
 
+# Reviewing Configuration Management (CM) - complete depencies: 
+MATCH (c:Category {ID:'CM'})-[rd:DETAILCAT]-(cd:CategoryDet)  
+OPTIONAL MATCH (cd)<-[rcdr:RELATEDCONTROL]-(cdr:CategoryDet)  
+OPTIONAL MATCH (cd)<-[rp:DETAILCATPOS]-(cdp:CategoryDetPos)  
+OPTIONAL MATCH (cdp)<-[rcp:RELATEDCONTROL]-(cd2:CategoryDet)  
+RETURN c, rd, cd, rcdr, cdr, rp, cdp, rcp, cd2  
+
+![image](https://github.com/jivaldez03/NIST_graph/assets/61798268/71ce2323-4cec-407b-825f-57c90f490a22)
+
+
+
 # Categories
 ## ID	    Name 	                                    Elements
 
