@@ -37,10 +37,10 @@ def sendingDB_categories(df):
 
 def sendingDB_controldef(df):
     print("Adding Categorie's Detail")
-    queryRoot = control.create_detailcat + \
+    queryCatRoot = control.create_detailcat + \
                     control.create_detailcat_prop.format(properties=control.detailcat_properties_forupdate) + \
                     control.create_detailcat_prop2
-    queryLeaves = control.create_detailcat_pos + \
+    queryCatLeaves = control.create_detailcat_pos + \
                     control.create_detailcat_pos_prop.format(properties=control.detailcat_properties_forupdate) + \
                     control.create_detailcat_pos_prop2   
         
@@ -65,9 +65,9 @@ def sendingDB_controldef(df):
             ssubids = None
         
         if refpos == 0:    # root - P-10
-            query = queryRoot
+            query = queryCatRoot
         else:
-            query = queryLeaves
+            query = queryCatLeaves
 
         dbexec.execute_write_query(targetdb, query
                                             , code = code
@@ -80,12 +80,12 @@ def sendingDB_controldef(df):
                                             )
         
 def adding_relatedcontrols():
-    print('Adding relationships')
+    print('Adding related-control relationships')
     query = relatedcontrol.create_relatedcontrol_relationship
     dbexec.execute_write_query(targetdb, query)
 
 def adding_rootnodes():
-    print('Adding root nodes')
+    print('Adding NIST nodes')
     query = category.create_root
     dbexec.execute_write_query(targetdb, query)
 
