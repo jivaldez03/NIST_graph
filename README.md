@@ -20,6 +20,7 @@ call db.schema.visualization()
 
 ![schema visualization](image.png)
 
+![image](https://github.com/jivaldez03/NIST_graph/assets/61798268/d2fe654c-95b9-4492-9c62-285db65d62ed)
 
 # Reviewing Configuration Management (CM): 
 Match (c:Category {ID:'CM'})-[rd:DETAILCAT]-(cd:CategoryDet)
