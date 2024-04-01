@@ -22,12 +22,11 @@ call db.schema.visualization()
 
 
 # Reviewing Configuration Management (CM): 
-match (c:Category {ID:'CM'})-[rd:DETAILCAT]-(cd:CategoryDet)
-        -[rp:DETAILCATPOS]-(cdp:CategoryDetPos)
+Match (c:Category {ID:'CM'})-[rd:DETAILCAT]-(cd:CategoryDet)
+optional match (cd)-[rp:DETAILCATPOS]-(cdp:CategoryDetPos)
 optional match (cdp)-[rcp:RELATEDCONTROL]-(cd2:CategoryDet)
 return c, rd, cd, rp, cdp, rcp, cd2
 
-![Configuration Management](image-1.png)
 
 
 # Categories
