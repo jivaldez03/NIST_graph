@@ -22,10 +22,10 @@ call db.schema.visualization()
 
 
 # Reviewing Configuration Management (CM): 
-Match (c:Category {ID:'CM'})-[rd:DETAILCAT]-(cd:CategoryDet)  
-optional match (cd)-[rp:DETAILCATPOS]-(cdp:CategoryDetPos)  
-optional match (cdp)-[rcp:RELATEDCONTROL]-(cd2:CategoryDet)  
-return c, rd, cd, rp, cdp, rcp, cd2  
+MATCH (c:Category {ID:'CM'})-[rd:DETAILCAT]-(cd:CategoryDet)  
+OPTIONAL MATCH (cd)-[rp:DETAILCATPOS]-(cdp:CategoryDetPos)  
+OPTIONAL MATCH (cdp)-[rcp:RELATEDCONTROL]-(cd2:CategoryDet)  
+RETURN c, rd, cd, rp, cdp, rcp, cd2  
 
 ![image](https://github.com/jivaldez03/NIST_graph/assets/61798268/d2fe654c-95b9-4492-9c62-285db65d62ed)
 
