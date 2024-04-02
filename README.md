@@ -1,17 +1,23 @@
 # NIST_graph
 
-# INSTALL AND LOAD XLSX FILE
+## Required Tools:  Docker and Python3.10
 
+### prepare a new environments for python (root: nist_Grap directory):
+### python3 -m venv venv
+### source venv/bin/activate
+### pip3 install -r requirements.txt
+
+# INSTALL AND LOAD XLSX FILE
 ## docker
 ### ------- please change "__your-user__" label with a real value
 1. sudo docker run -d --publish=7474:7474 --publish=7687:7687 --env=NEO4J_AUTH=none --volume=/home/__your-user__/dockerback/dock_NIST/data:/data neo4j
 
 ## loading NIST file
-### execute only once, your docker will keep the file loaded 
+### To load file into docker execute: 
 2. python3 main.py
 
 
-# Exploring graph database
+# Exploring graph database (no user and password)
 http://0.0.0.0:7474/browser/   or http://localhost:7474/browser/
 
 
