@@ -1,7 +1,9 @@
 from app.general_functions.common import _get_datetime, _get_sdatetime
 from app.general_functions import pandas_fn as pd_fns
 from app.db import common_dbfunc as dbexec
-from app.db.crud.crud_security import category, categoryID_SUBID as control, relatedcontrol
+
+from app.db.crud.crud_security import control, control_enhacement
+from app.db.crud.crud_security import category
 
 from app.db.database import driver_forneo4j
 
@@ -51,11 +53,11 @@ def sendingDB_controldef(df):
         discussion = row["Discussion"]
         controls = row["Related Controls"]
 
-        # slicing code_ref 
-        code,ref = code_ref.split('-') 
-        reflist = ref.split('(') 
-        ref,refpos = reflist[0], reflist[1] if len(reflist) > 1 else None
-        refpos = int(refpos.replace(')','')) if refpos else 0
+        # slicing code_ref  (format: MA-3(1))
+        code,ref = code_ref.split('-')  # [MA, 3(1)]
+        reflist = ref.split('(')        # [3, 1)]
+        ref,refpos = reflist[0], reflist[1] if len(reflist) > 1 else None  # 3, 1)
+        refpos = int(refpos.replace(')','')) if refpos else 0               # 1
         print(index_df+1, code_ref, code, ref, refpos, controls, refpos)        
         
         if controls.lower() not in ['none','none.','', None]:
@@ -81,7 +83,7 @@ def sendingDB_controldef(df):
         
 def adding_relatedcontrols():
     print('Adding related-control relationships')
-    query = relatedcontrol.create_relatedcontrol_relationship
+    query = control_enhacement.create_relatedcontrol_relationship
     dbexec.execute_write_query(targetdb, query)
 
 def adding_rootnodes():

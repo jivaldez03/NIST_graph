@@ -22,12 +22,12 @@ create_root =   """
                 on match set NP.ctUpdate = datetime()
                 set NP.name = 'NIST Special Publication 800-53 release 5'
                 WITH N,NP
-                MERGE (N)<-[R:PUBLICATION]-(NP)
+                MERGE (N)-[R:PUBLICATION]->(NP)
                 on create set R.ctInsert = datetime()
                 on match set R.ctUpdate = datetime()
                 WITH NP
                 MATCH (C:Category)
-                MERGE (C)-[RCP:PUBLICATIONCAT]->(NP)
+                MERGE (C)<-[RCP:CATEGORY_PUB]-(NP)
                 on create set RCP.ctInsert = datetime()
                 on match set RCP.ctUpdate = datetime()
                 RETURN C,NP

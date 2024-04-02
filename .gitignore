@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+# jaiv comments
+.jiv
 
 # C extensions
 *.so
