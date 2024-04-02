@@ -1,18 +1,19 @@
 # NIST_graph
 
-## Required Tools:  Docker and Python3.10
+## Required Tools:  Docker and Python 3.10+
 
+# INSTALL AND LOAD XLSX FILE
+## Python 3.10
 ### prepare a new environments for python (root: nist_Grap directory):
 ### python3 -m venv venv
 ### source venv/bin/activate
 ### pip3 install -r requirements.txt
 
-# INSTALL AND LOAD XLSX FILE
-## docker
+## Docker
 ### ------- please change "__your-user__" label with a real value
 1. sudo docker run -d --publish=7474:7474 --publish=7687:7687 --env=NEO4J_AUTH=none --volume=/home/__your-user__/dockerback/dock_NIST/data:/data neo4j
 
-## loading NIST file
+## Loading NIST file
 ### To load file into docker execute: 
 2. python3 main.py
 
@@ -26,6 +27,12 @@ call db.schema.visualization()
 
 ![schema visualization](image.png)
 
+
+# Reviewing NIST-PUBLICATION-CATEGORIES
+MATCH (c:Category)<-[:CATEGORY_PUB]-(np)<-[:PUBLICATION]-(nist)  
+RETURN c, np, nist  
+
+![NIST-publication-category](nist-pub-cat.png)  
 
 # Reviewing Configuration Management (CM) + Controls:
 MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
