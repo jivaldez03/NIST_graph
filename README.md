@@ -16,21 +16,21 @@ http://0.0.0.0:7474/browser/   or http://localhost:7474/browser/
 
 
 # Review complete schema - Neo4j Command: 
-call db.schema.visualization()
+call db.schema.visualization()  
 
 ![schema visualization](image.png)
 
 
-# Reviewing Configuration Management (CM) + Controls 
+# Reviewing Configuration Management (CM) + Controls:
 MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
 RETURN c, rd, cd  
 
 ![Configuration Management](CM-control.png)  
 
-# Reviewing Configuration Management (CM) + Control + Control Enhacement : 
-MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)
-OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)
-RETURN c, rd, cd
+# Reviewing Configuration Management (CM) + Control + Control Enhacement: 
+MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
+OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)  
+RETURN c, rd, cd  
         , rp, cdp  
 
 ![Configuration Management-Enhacement](CM-control-enhacement.png)  
