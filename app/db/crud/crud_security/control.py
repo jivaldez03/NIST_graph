@@ -14,7 +14,7 @@ create_detailcat_prop = """set D += {{ {properties} }}"""
 create_detailcat_prop2 = """
                         WITH D
                         MATCH (C:Category {ID:$code})
-                        MERGE (D)<-[R:DET_CATEGORY]-(C)
+                        MERGE (D)<-[R:CATEGORY_DET]-(C)
                         on create set R.ctInsert = datetime()
                         on match set R.ctUpdate = datetime()
                         return D 
@@ -29,7 +29,7 @@ create_detailcat_pos_prop = """set DP += {{ {properties} }}"""
 create_detailcat_pos_prop2 = """
                         WITH DP
                         MATCH (D:Control {ID:$code, SUBID:$ref})
-                        MERGE (DP)<-[R:DET_ENHACEMENT]-(D)
+                        MERGE (DP)<-[R:ENHACEMENT_DET]-(D)
                         on create set R.ctInsert = datetime()
                         on match set R.ctUpdate = datetime()
                         return D 
