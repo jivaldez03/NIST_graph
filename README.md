@@ -21,13 +21,28 @@ call db.schema.visualization()
 ![schema visualization](image.png)
 
 
-# Reviewing Configuration Management (CM): 
+# Reviewing Configuration Management (CM) + Controls 
+MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
+RETURN c, rd, cd  
+
+![Configuration Management](CM-control.png)  
+
+# Reviewing Configuration Management (CM) + Control + Control Enhacement : 
+MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)
+OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)
+RETURN c, rd, cd
+        , rp, cdp  
+
+![Configuration Management-Enhacement](CM-control-enhacement.png)  
+
+
+# Reviewing Configuration Management (CM) + Control + Control Enhacement -> Related Controls: 
 MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
 OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)  
 OPTIONAL MATCH (cdp)-[rcp:RELATED_CONTROL]->(cd2:Control)  
 RETURN c, rd, cd, rp, cdp, rcp, cd2  
 
-![Configuration Management](CM.png)  
+![Configuration Management-related](CM-control-related.png)  
 
 
 # Reviewing Configuration Management (CM) - complete dependencies: 
