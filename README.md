@@ -22,12 +22,12 @@ call db.schema.visualization()
 
 
 # Reviewing Configuration Management (CM): 
-MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)
-OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)
-OPTIONAL MATCH (cdp)-[rcp:RELATED_CONTROL]->(cd2:Control)
-RETURN c, rd, cd, rp, cdp, rcp, cd2
+MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
+OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)  
+OPTIONAL MATCH (cdp)-[rcp:RELATED_CONTROL]->(cd2:Control)  
+RETURN c, rd, cd, rp, cdp, rcp, cd2  
 
-![Configuration Management](CM.png)
+![Configuration Management](CM.png)  
 
 
 # Reviewing Configuration Management (CM) - complete dependencies: 
