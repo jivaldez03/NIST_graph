@@ -25,7 +25,7 @@ http://0.0.0.0:7474/browser/   or http://localhost:7474/browser/
 # Review complete schema - Neo4j Command: 
 call db.schema.visualization()  
 
-![schema visualization](image.png)
+![schema visualization](schema_visualization.png)
 
 
 # Reviewing NIST-PUBLICATION-CATEGORIES
