@@ -17,7 +17,7 @@ create_root =   """
                 on match set N.ctUpdate = datetime()
                 set N.name = 'NIST'
                 WITH N
-                MERGE (NP:NIST_PUBLICATION {ID:'NIST 800-53 R5'})
+                MERGE (NP:NIST_Publication {ID:'NIST 800-53 R5'})
                 on create set NP.ctInsert = datetime()
                 on match set NP.ctUpdate = datetime()
                 set NP.name = 'NIST Special Publication 800-53 release 5'

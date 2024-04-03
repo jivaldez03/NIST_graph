@@ -2,7 +2,7 @@ from app.general_functions.common import _get_datetime, _get_sdatetime
 from app.general_functions import pandas_fn as pd_fns
 from app.db import common_dbfunc as dbexec
 
-from app.db.crud.crud_security import control, control_enhacement
+from app.db.crud.crud_security import control, control_enhancement
 from app.db.crud.crud_security import category
 
 from app.db.database import driver_forneo4j
@@ -83,7 +83,7 @@ def sendingDB_controldef(df):
         
 def adding_relatedcontrols():
     print('Adding related-control relationships')
-    query = control_enhacement.create_relatedcontrol_relationship
+    query = control_enhancement.create_relatedcontrol_relationship
     dbexec.execute_write_query(targetdb, query)
 
 def adding_rootnodes():

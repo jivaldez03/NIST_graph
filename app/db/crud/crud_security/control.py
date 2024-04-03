@@ -19,9 +19,9 @@ create_detailcat_prop2 = """
                         on match set R.ctUpdate = datetime()
                         return D 
                         """
-# create ControlEnhacement node and the relationship with Control
+# create ControlEnhancement node and the relationship with Control
 create_detailcat_pos = """
-                MERGE (DP:ControlEnhacement {ID:$code, SUBID: $ref, POS: $refpos})
+                MERGE (DP:ControlEnhancement {ID:$code, SUBID: $ref, POS: $refpos})
                 on create set DP.ctInsert = datetime()
                 on match set DP.ctUpdate = datetime()
                 """
@@ -29,7 +29,7 @@ create_detailcat_pos_prop = """set DP += {{ {properties} }}"""
 create_detailcat_pos_prop2 = """
                         WITH DP
                         MATCH (D:Control {ID:$code, SUBID:$ref})
-                        MERGE (DP)<-[R:ENHACEMENT_DET]-(D)
+                        MERGE (DP)<-[R:ENHANCEMENT_DET]-(D)
                         on create set R.ctInsert = datetime()
                         on match set R.ctUpdate = datetime()
                         return D 

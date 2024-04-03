@@ -40,18 +40,18 @@ RETURN c, rd, cd
 
 ![Configuration Management](CM-control.png)  
 
-# Reviewing Configuration Management (CM) + Control + Control Enhacement: 
+# Reviewing Configuration Management (CM) + Control + Control Enhancement: 
 MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
-OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)  
+OPTIONAL MATCH (cd)-[rp:ENHANCEMENT_DET]->(cdp:ControlEnhancement)  
 RETURN c, rd, cd  
         , rp, cdp  
 
-![Configuration Management-Enhacement](CM-control-enhacement.png)  
+![Configuration Management-Enhancement](CM-control-enhancement.png)  
 
 
-# Reviewing Configuration Management (CM) + Control + Control Enhacement -> Related Controls: 
+# Reviewing Configuration Management (CM) + Control + Control Enhancement -> Related Controls: 
 MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
-OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)  
+OPTIONAL MATCH (cd)-[rp:ENHANCEMENT_DET]->(cdp:ControlEnhancement)  
 OPTIONAL MATCH (cdp)-[rcp:RELATED_CONTROL]->(cd2:Control)  
 RETURN c, rd, cd, rp, cdp, rcp, cd2  
 
@@ -60,7 +60,7 @@ RETURN c, rd, cd, rp, cdp, rcp, cd2
 
 # Reviewing Configuration Management (CM) - complete dependencies: 
 MATCH (c:Category {ID:'CM'})-[rd:CATEGORY_DET]->(cd:Control)  
-OPTIONAL MATCH (cd)-[rp:ENHACEMENT_DET]->(cdp:ControlEnhacement)  
+OPTIONAL MATCH (cd)-[rp:ENHANCEMENT_DET]->(cdp:ControlEnhancement)  
 OPTIONAL MATCH (cd)-[rcdr:RELATED_CONTROL]->(cdr:Control)  
 OPTIONAL MATCH (cdp)-[rcp:RELATED_CONTROL]->(cd2:Control)  
 RETURN c, rd, cd, rp, cdp  

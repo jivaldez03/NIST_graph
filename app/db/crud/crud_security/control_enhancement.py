@@ -1,7 +1,7 @@
 
 create_relatedcontrol_relationship = """
-                        // adding relationship between ControlEnhacement (leaves)
-                        MATCH (c:Category)-[rd:CATEGORY_DET]->(cd:Control)-[rdp:ENHACEMENT_DET]->(cdp:ControlEnhacement)
+                        // adding relationship between ControlEnhancement (leaves)
+                        MATCH (c:Category)-[rd:CATEGORY_DET]->(cd:Control)-[rdp:ENHANCEMENT_DET]->(cdp:ControlEnhancement)
                         UNWIND cdp.controls as relatedcontrol
                         WITH cdp, cdp.controls as controls, relatedcontrol, split(relatedcontrol,'-') as rcontrol
                         WITH cdp, controls, relatedcontrol, rcontrol[0] as sID, rcontrol[1] as sSUBID
