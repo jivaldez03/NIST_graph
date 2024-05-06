@@ -1,8 +1,9 @@
 from app.db import common_dbfunc as dbexec
+from app.db.database import targetdb
 from app.db.crud.NIST_file import control, control_enhancement
 from app.db.crud.NIST_file import category
 
-def sendingDB_categories(targetdb, df):
+def sendingDB_categories(df):
     print("Adding Categories")
     for index_df, row in df.iterrows():
         index = row['Ix']
@@ -21,7 +22,7 @@ def sendingDB_categories(targetdb, df):
                                             )
     return
 
-def sendingDB_controldef(targetdb, df):
+def sendingDB_controldef(df):
     print("Adding Categories Detail")
     queryCatRoot = control.create_detailcat + \
                     control.create_detailcat_prop.format(properties=control.detailcat_properties_forupdate) + \
@@ -65,12 +66,12 @@ def sendingDB_controldef(targetdb, df):
                                             , controls = ssubids  #controls
                                             )
         
-def adding_relatedcontrols(targetdb, ):
+def adding_relatedcontrols():
     print('Adding related-control relationships')
     query = control_enhancement.create_relatedcontrol_relationship
     dbexec.execute_write_query(targetdb, query)
 
-def adding_rootnodes(targetdb, ):
+def adding_rootnodes():
     print('Adding NIST nodes')
     query = category.create_root
     dbexec.execute_write_query(targetdb, query)
