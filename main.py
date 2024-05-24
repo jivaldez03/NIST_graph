@@ -6,6 +6,8 @@ import app.loading_fn as loadf
 
 driver_open_session()
 
+loadf.initializing_database()
+
 pdxls = pd_fns._read_file('files/Combined sp800-53r5-control-catalog.xlsx') 
 print("sheets: ", pdxls.keys())
 for gia, sheet in enumerate(list(pdxls.keys())[0:]):

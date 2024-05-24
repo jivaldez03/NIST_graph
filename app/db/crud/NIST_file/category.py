@@ -2,6 +2,11 @@
 cat_properties_params = "index: $index, code: $code, name: $name, description: $description"
 cat_properties_forupdate = "index: $index, name: $name, description: $description"
 
+initializing_database = """
+        MATCH (n)
+        DETACH DELETE n
+        """
+
 create_category = """
                 MERGE (C:Category {ID:$code})
                 on create set C.ctInsert = datetime()

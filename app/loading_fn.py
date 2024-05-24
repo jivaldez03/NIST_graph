@@ -3,6 +3,11 @@ from app.db import common_dbfunc as dbexec
 from app.db.crud.NIST_file import control, control_enhancement
 from app.db.crud.NIST_file import category
 
+
+def initializing_database():
+    query = category.initializing_database
+    dbexec.execute_write_query(query)
+
 def sendingDB_categories(df):
     print("Adding Categories")
     for index_df, row in df.iterrows():
