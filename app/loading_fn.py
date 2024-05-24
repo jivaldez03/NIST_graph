@@ -1,5 +1,5 @@
 from app.db import common_dbfunc as dbexec
-from app.db.database import targetdb
+#from app.db.database import targetdb
 from app.db.crud.NIST_file import control, control_enhancement
 from app.db.crud.NIST_file import category
 
@@ -14,7 +14,7 @@ def sendingDB_categories(df):
         query = category.create_category + \
                 category.create_category_prop.format(properties=category.cat_properties_forupdate)
 
-        dbexec.execute_write_query(targetdb, query
+        dbexec.execute_write_query(query
                                               , index = index
                                               , code = code
                                               , name = name
@@ -56,7 +56,7 @@ def sendingDB_controldef(df):
         else:
             query = queryCatLeaves
 
-        dbexec.execute_write_query(targetdb, query
+        dbexec.execute_write_query(query
                                             , code = code
                                             , ref = int(ref)
                                             , refpos = refpos
@@ -69,9 +69,9 @@ def sendingDB_controldef(df):
 def adding_relatedcontrols():
     print('Adding related-control relationships')
     query = control_enhancement.create_relatedcontrol_relationship
-    dbexec.execute_write_query(targetdb, query)
+    dbexec.execute_write_query(query)
 
 def adding_rootnodes():
     print('Adding NIST nodes')
     query = category.create_root
-    dbexec.execute_write_query(targetdb, query)
+    dbexec.execute_write_query(query)

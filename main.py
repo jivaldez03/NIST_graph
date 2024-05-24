@@ -1,8 +1,11 @@
 from app.general_functions import pandas_fn as pd_fns
-from app.db.database import driver_close
+from app.db.database import driver_open_session, driver_close
 import app.loading_fn as loadf 
 
 # MAIN SECTION
+
+driver_open_session()
+
 pdxls = pd_fns._read_file('files/Combined sp800-53r5-control-catalog.xlsx') 
 print("sheets: ", pdxls.keys())
 for gia, sheet in enumerate(list(pdxls.keys())[0:]):
